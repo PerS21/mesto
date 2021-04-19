@@ -1,0 +1,14 @@
+.form {
+    width: 430px;
+    height: 330px;
+    background-color: white;
+    position: relative;
+    top: 195px;
+    margin: auto;
+    right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 34px 36px 37px;
+    box-sizing: border-box;
+}

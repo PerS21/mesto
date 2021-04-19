@@ -4,3 +4,11 @@
     top: -40px;
     width: 40px;
 }
+
+@media (max-width: 767px) {
+    .form__close-icon {
+        right: -0px;
+        top: -39px;
+        width: 26px;
+    }
+}

@@ -21,6 +21,7 @@
 @import url(../blocks/element/__img/element__img.css);
 @import url(../blocks/element/__text/element__text.css);
 @import url(../blocks/element/__info/element__info.css);
+@import url(../blocks/element/__heart/element__heart.css);
 
 @import url(../blocks/footer/footer.css);
 
@@ -34,3 +35,4 @@
 @import url(../blocks/form/__close-icon/form__close-icon.css);
 
 @import url(../blocks/display/display.css);
+@import url(../blocks/button/button.css);

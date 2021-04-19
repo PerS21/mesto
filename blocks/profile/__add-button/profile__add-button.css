@@ -2,7 +2,8 @@
     background-color: black;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
-    width: 150px;
+    max-width: 150px;
+    width: 20%;
     height: 50px;
     padding: 0;
 }

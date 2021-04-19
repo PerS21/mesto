@@ -1,0 +1,12 @@
+.element__heart{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.element__heart:hover{
+    opacity: 0.5;
+}
+
+.element__heart:active{
+    background: #000000;
+}

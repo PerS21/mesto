@@ -3,4 +3,10 @@
     border-radius: 2px;
     color: #FFFFFF;
     height: 50px;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.form__button-save:hover{
+    opacity: 0.8;
 }

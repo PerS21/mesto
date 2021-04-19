@@ -7,3 +7,14 @@
     margin-top: 67px;
     color: #545454;
 }
+
+@media (max-width: 767px) {
+    .footer {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        margin-left: 19px;
+        margin-top: 48px;
+    }
+}

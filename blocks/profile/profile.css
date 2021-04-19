@@ -5,3 +5,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+@media (max-width: 767px){
+    .profile{
+        width: 80%;
+        margin: 38px auto 36px;
+        flex-direction: column;
+    }
+}

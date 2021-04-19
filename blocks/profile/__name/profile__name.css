@@ -14,3 +14,15 @@
     overflow: hidden;
     max-width: 294px;
 }
+
+@media (max-width: 767px) {
+    .profile__name {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 27px;
+        line-height: 33px;
+        text-align: center;
+
+        justify-content: space-around;
+    }
+}

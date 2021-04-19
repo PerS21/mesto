@@ -7,15 +7,20 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__prof');
 
 const fieldName = document.querySelector('.form__field-name');
-const fieldProfessionalism = document.querySelector('.form__field-professionalism');
+const fieldProfessionalism = document.querySelector('.form__field-about');
 const buttonSave = document.querySelector('.form__button-save');
+const form = document.querySelector('.form')
 
 
 
 
 function DisplayToggle() {
-    fieldName.placeholder = profileName.innerHTML;
-    // fieldProfessionalism.value = profileProf.innerHTML;
+    if (profileName.innerHTML !== '') {
+        fieldName.value = profileName.innerHTML;
+    }
+    if (profileProf.innerHTML !== '') {
+        fieldProfessionalism.value = profileProf.innerHTML;
+    }
     popup.classList.toggle('display');
 }
 
@@ -28,7 +33,8 @@ popup.addEventListener('click', function (event) {
     }
 });
 
-buttonSave.addEventListener('click', function () {
+function formSubmitHandler(evt) {
+    evt.preventDefault();
     if (fieldName.value !== '') {
         profileName.innerHTML = fieldName.value;
     }
@@ -36,4 +42,7 @@ buttonSave.addEventListener('click', function () {
         profileProf.innerHTML = fieldProfessionalism.value;
     }
     DisplayToggle();
-});
+};
+
+form.addEventListener('submit', formSubmitHandler);
+

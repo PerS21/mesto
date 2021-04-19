@@ -6,7 +6,3 @@
 .element__heart:hover{
     opacity: 0.5;
 }
-
-.element__heart:active{
-    background: #000000;
-}

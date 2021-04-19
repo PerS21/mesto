@@ -1,5 +1,5 @@
 .form__field-about {
-    border: solid #000000;
+    border: solid rgba(0,0,0,0.2);
     border-width: 0 0 1px 0;
     font-style: normal;
     font-weight: normal;

@@ -1,10 +1,13 @@
-.profile__name-line{
+.profile__name-line {
     display: flex;
     align-items: baseline;
+    position: relative;
 }
 
 @media (max-width: 767px) {
     .profile__name-line {
         justify-content: space-evenly;
+        margin: auto;
+        max-width: 80%;
     }
 }

@@ -1,13 +1,12 @@
 .profile__edit-button {
     background-color: black;
     border: 1px solid #FFFFFF;
-    padding: 7px;
-    box-sizing: border-box;
     width: 24px;
     height: 24px;
     right: -30px;
     position: absolute;
     top: 15px;
+    /* background: url("../../../images/Edit\ Button.svg"); */
 }
 
 @media (max-width: 767px) {

@@ -1,5 +1,4 @@
 .form__close-button{
-    background: none;
     border: none;
     position: absolute;
     right: -40px;
@@ -7,6 +6,10 @@
     width: 40px;
     outline: 0;
     padding: 0;
+    background: url(../../../images/CloseIcon.svg);
+    background-size: cover;
+    width: 40px;
+    height: 40px;
 }
 
 @media (max-width: 767px) {
@@ -14,5 +17,6 @@
         right: -0px;
         top: -39px;
         width: 26px;
+        height: 26px;
     }
 }

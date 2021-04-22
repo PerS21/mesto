@@ -1,12 +1,16 @@
-.form__close-icon{
+.form__close-button{
+    background: none;
+    border: none;
     position: absolute;
     right: -40px;
     top: -40px;
     width: 40px;
+    outline: 0;
+    padding: 0;
 }
 
 @media (max-width: 767px) {
-    .form__close-icon {
+    .form__close-button {
         right: -0px;
         top: -39px;
         width: 26px;

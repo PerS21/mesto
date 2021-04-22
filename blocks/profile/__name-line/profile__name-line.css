@@ -1,7 +1,8 @@
 .profile__name-line {
     display: flex;
-    align-items: baseline;
     position: relative;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 767px) {

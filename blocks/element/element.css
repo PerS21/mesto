@@ -1,7 +1,6 @@
-.element{
-    width: 282px;
-    height: 362px;
-    overflow: hidden;
-    background-color: #FFFFFF;
-    border-radius: 10px;
+.element {
+  width: 282px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 10px;
 }

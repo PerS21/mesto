@@ -1,23 +1,21 @@
 .form {
-    width: 430px;
-    height: 330px;
-    background-color: white;
-    position: relative;
-    top: 195px;
-    margin: auto;
-    right: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 34px 36px 37px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+  width: 430px;
+  background-color: white;
+  position: relative;
+  margin: auto;
+  right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 36px 37px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  margin-top: calc((100vh / 2) - 165px);
 }
 
 @media (max-width: 767px) {
-    .form {
-        width: 282px;
-        height: 322px;
-    }
+  .form {
+    width: 282px;
+  }
 }

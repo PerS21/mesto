@@ -1,19 +1,21 @@
 .profile__edit-button {
-    background-color: black;
-    border: 1px solid #FFFFFF;
-    width: 24px;
-    height: 24px;
-    right: -30px;
-    position: absolute;
-    top: 15px;
-    /* background: url("../../../images/Edit\ Button.svg"); */
+  background-color: black;
+  border: 1px solid #ffffff;
+  width: 24px;
+  height: 24px;
+  right: -30px;
+  top: 15px;
+  /* background: url("../../../images/Edit\ Button.svg"); */
 }
 
 @media (max-width: 767px) {
-    .profile__edit-button {
-        top: 9px;
-        width: 18px;
-        height: 18px;
-        padding: 5.25px;
-    }
+  .profile__edit-button {
+    position: absolute;
+    top: 9px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

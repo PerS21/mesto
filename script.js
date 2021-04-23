@@ -16,13 +16,12 @@ function PopupDisplayToggle() {
 }
 
 function OpenPopup() {
-    fieldName.value = profileName.innerHTML;
-    fieldProfessionalism.value = profileProf.innerHTML;
+    fieldName.value = profileName.textContent;
+    fieldProfessionalism.value = profileProf.textContent;
     PopupDisplayToggle()
 }
 
 function ClosePopup(evt) {
-    evt.preventDefault();
     PopupDisplayToggle()
 }
 

@@ -8,6 +8,7 @@
     transition: opacity 1s;
     border-color: black;
     cursor: pointer;
+    width: 100%;
 }
 
 .form__button-save:hover {

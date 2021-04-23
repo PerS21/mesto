@@ -28,7 +28,7 @@
                         <p class="profile__prof">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add-button button">
+                <button type="button" class="profile__add-button button">
                     <img src="./images/Vectoradd.svg" alt="Добавить" />
                 </button>
             </section>
@@ -91,20 +91,23 @@
         </footer>
 
         <div class="popup">
-            <form class="form">
+            <div class="form">
                 <h2 class="form__title">Редактировать профиль</h2>
-                <div class="form__inputs">
-                    <input name='fild_name' type="text" placeholder="Имя" class="form__input form__input_fild_name" />
-                    <input name='fild_about' type="text" placeholder="О себе"
-                        class="form__input form__input_fild_about" />
-                </div>
-                <button type="submit" class="form__button-save">Сохранить</button>
-                <button type="button" class="form__close-button button"></button>
-            </form>
+                <form name="form">
+                    <div class="form__inputs">
+                        <input name='fild_name' type="text" placeholder="Имя"
+                            class="form__input form__input_fild_name" />
+                        <input name='fild_about' type="text" placeholder="О себе"
+                            class="form__input form__input_fild_about" />
+                    </div>
+                    <button type="submit" class="form__button-save">Сохранить</button>
+                    <button type="button" class="form__close-button button"></button>
+                </form>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>

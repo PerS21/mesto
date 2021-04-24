@@ -10,7 +10,7 @@
 @media (max-width: 767px) {
   .profile__edit-button {
     position: absolute;
-    top: 9px;
+    right: -25px;
     width: 18px;
     height: 18px;
     display: flex;

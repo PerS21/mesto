@@ -21,7 +21,7 @@ function OpenPopup() {
     PopupDisplayToggle()
 }
 
-function ClosePopup(evt) {
+function ClosePopup() {
     PopupDisplayToggle()
 }
 

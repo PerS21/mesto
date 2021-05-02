@@ -47,7 +47,7 @@ const template = document.querySelector('#template');
 const elements = document.querySelector('.elements__list');
 
 const imgPopup = document.querySelector('.popup_content-img');
-const imgPopupImg = imgPopup.querySelector('.imgPopup_img');
+const imgPopupImg = imgPopup.querySelector('.imgPopup__img');
 const imgPopupText = imgPopup.querySelector('.imgPopup__text');
 
 const initialCards = [{

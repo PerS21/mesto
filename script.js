@@ -4,8 +4,8 @@ const profileProf = document.querySelector('.profile__prof');
 
 const profileEditPopup = document.querySelector('.profile-edit-popup');
 const profileEditForm = document.querySelector('.profile-edit-form');
-const profileEditFieldName = document.querySelector('.profile-edit-form__input_fild_name');
-const profileEditFieldAbout = document.querySelector('.profile-edit-form__input_fild_about');
+const profileEditFieldName = document.querySelector('.profile-edit-form__input-fild-name');
+const profileEditFieldAbout = document.querySelector('.profile-edit-form__input-fild-about');
 const profileEditButtonSave = document.querySelector('.profile-edit-form__button-save');
 const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
@@ -129,8 +129,8 @@ const addPlaceCloseIcon = document.querySelector('.add-place-form__close-button'
 
 const addPlacePopupPopup = document.querySelector('.profile-edit-popup');
 const addPlacePopupForm = document.querySelector('.add-place-form');
-const addPlacePopupFieldText = document.querySelector('.add-place-form__input_fild_text');
-const addPlacePopupFieldLink = document.querySelector('.add-place-form__input_fild_link');
+const addPlacePopupFieldText = document.querySelector('.add-place-form__input-fild-text');
+const addPlacePopupFieldLink = document.querySelector('.add-place-form__input-fild-link');
 const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
 const addPlacePopupCloseIcon = document.querySelector('.add-place-form__close-button');
 

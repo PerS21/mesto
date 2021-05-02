@@ -1,3 +1,4 @@
 .imgPopup{
     position: relative;
+    max-height: inherit;
 }

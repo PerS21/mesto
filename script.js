@@ -87,8 +87,9 @@ function newElement(ElemenConfig) {
 
   function openImgPopup(e) {
     imgPopupImg.src = e.target.src;
-    const elementText = e.target.closest('.element').querySelector('.element__text').textContent
+    const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
     imgPopupText.textContent = elementText;
+    imgPopupImg.alt = `картинка места - ${elementText}`;
     PopupDisplayToggle(imgPopup);
   }
 
@@ -97,6 +98,7 @@ function newElement(ElemenConfig) {
   const elementImg = newElement.querySelector('.element__img');
   elementImg.src = ElemenConfig.link;
   elementText.textContent = ElemenConfig.name;
+  elementImg.alt = `картинка места - ${ElemenConfig.name}`;
 
   const elementRemoveButton = newElement.querySelector('.element__trash');
 

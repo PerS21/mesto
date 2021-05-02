@@ -34,55 +34,6 @@
             </section>
             <section class="elements">
                 <ul class="elements__list">
-                    <li class="element">
-                        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="element__img" />
-                        <div class="element__info">
-                            <h2 class="element__text">Карачаевск</h2>
-                            <button type="button" class="element__heart">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/2.png" alt="Гора Эльбрус" class="element__img" />
-                        <div class="element__info">
-                            <h2 class="element__text">Гора Эльбрус</h2>
-                            <button type="button" class="element__heart">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/3.png" alt="Домбай" class="element__img" />
-                        <div class="element__info">
-                            <h2 class="element__text">Домбай</h2>
-                            <button type="button" class="element__heart">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/4.png" alt="Гора Эльбрус" class="element__img" />
-                        <div class="element__info">
-                            <h2 class="element__text">Гора Эльбрус</h2>
-                            <button type="button" class="element__heart">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/5.png" alt="Домбай" class="element__img" />
-                        <div class="element__info">
-                            <h2 class="element__text">Домбай</h2>
-                            <button type="button" class="element__heart">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаево-Черкесия"
-                            class="element__img" />
-                        <div class="element__info">
-                            <h2 class="element__text">Карачаево-Черкесия</h2>
-                            <button type="button" class="element__heart">
-                            </button>
-                        </div>
-                    </li>
                 </ul>
             </section>
         </main>
@@ -90,23 +41,61 @@
             <p>© 2020 Mesto Russia</p>
         </footer>
 
-        <div class="popup">
-            <div class="popup__container">
-                <form name="form" class="form">
-                <h2 class="form__title">Редактировать профиль</h2>
+        <div class="popup profile-edit-popup">
+            <div class="popup__container popup__container_content-form">
+                <form name="form" class="form profile-edit-form">
+                    <h2 class="form__title">Редактировать профиль</h2>
                     <div class="form__inputs">
-                        <input name='fild_name' type="text" placeholder="Имя"
-                            class="form__input form__input_fild_name" />
-                        <input name='fild_about' type="text" placeholder="О себе"
-                            class="form__input form__input_fild_about" />
+                        <input name='fild_name' type="text" placeholder="Название"
+                            class="form__input profile-edit-form__input_fild_name" />
+                        <input name='fild_about' type="text" placeholder="Ссылка на картинку"
+                            class="form__input profile-edit-form__input_fild_about" />
                     </div>
-                    <button type="submit" class="form__button-save">Сохранить</button>
-                    <button type="button" class="form__close-button button"></button>
+                    <button type="submit" class="form__button-save profile-edit-form__button-save">Сохранить</button>
+                    <button type="button" class="popup__close-button button profile-edit-form__close-button"></button>
                 </form>
+            </div>
+        </div>
+
+        <div class="popup add-place-popup">
+            <div class="popup__container popup__container_content-form">
+                <form name="form" class="form add-place-form">
+                    <h2 class="form__title">Новое место</h2>
+                    <div class="form__inputs">
+                        <input name='fild_name' type="text" placeholder="Название"
+                            class="form__input add-place-form__input_fild_text" />
+                        <input name='fild_about' type="text" placeholder="Ссылка на картинку"
+                            class="form__input add-place-form__input_fild_link" />
+                    </div>
+                    <button type="submit" class="form__button-save add-place-form__button-save">Сохранить</button>
+                    <button type="button" class="popup__close-button button add-place-form__close-button"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup_content-img">
+            <div class="popup__container popup__container_content-img">
+                <div class="imgPopup">
+                    <img class="imgPopup_img" src="https://images.unsplash.com/photo-1619868559046-ed3218b9e56a?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                        alt="Картинка карточки">
+                    <p class="imgPopup__text">Текс карточки</p>
+                    <button type="button" class="popup__close-button button imgPopup__close-button"></button>
+                </div>
             </div>
         </div>
     </div>
 
+    <template id="template">
+        <li class="element">
+            <img src="" alt="Картинка карточки" class="element__img" />
+            <div class="element__info">
+                <h2 class="element__text">fpfpfp</h2>
+                <button type="button" class="element__heart">
+                </button>
+            </div>
+            <button type="button" class="element__trash button"></button>
+        </li>
+    </template>
     <script src="script.js"></script>
 </body>
 

@@ -9,12 +9,11 @@ const profileEditFieldAbout = document.querySelector('.profile-edit-form__input-
 const profileEditButtonSave = document.querySelector('.profile-edit-form__button-save');
 const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
-
 function PopupDisplayToggle(popup) {
   popup.classList.toggle('display');
 }
 
-function OpenProfileEditPopup() {
+function openProfileEditPopup() {
   profileEditFieldName.value = profileName.textContent;
   profileEditFieldAbout.value = profileProf.textContent;
   PopupDisplayToggle(profileEditPopup)
@@ -23,8 +22,6 @@ function OpenProfileEditPopup() {
 function closeProfileEditPopup() {
   PopupDisplayToggle(profileEditPopup)
 }
-
-
 
 function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
@@ -37,7 +34,23 @@ function profileEditFormSubmitHandler(evt) {
   PopupDisplayToggle(profileEditPopup)
 };
 
-editButton.addEventListener('click', OpenProfileEditPopup);
+function deleteCard(e) {
+  e.target.closest('.element').remove();
+}
+
+function openImgPopup(e) {
+  imgPopupImg.src = e.target.src;
+  const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
+  imgPopupText.textContent = elementText;
+  imgPopupImg.alt = `картинка места - ${elementText}`;
+  PopupDisplayToggle(imgPopup);
+}
+
+function likeToggle() {
+  elementHeart.classList.toggle('element__heart_active');
+}
+
+editButton.addEventListener('click', openProfileEditPopup);
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
 profileEditCloseIcon.addEventListener('click', closeProfileEditPopup);
@@ -50,75 +63,30 @@ const imgPopup = document.querySelector('.imgPopup');
 const imgPopupImg = imgPopup.querySelector('.imgPopup__img');
 const imgPopupText = imgPopup.querySelector('.imgPopup__text');
 
-const initialCards = [{
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-
-
-
-function newElement(ElemenConfig) {
-
-  function handleRemoveTodo(e) {
-    e.target.closest('.element').remove();
-  }
-
-  function openImgPopup(e) {
-    imgPopupImg.src = e.target.src;
-    const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
-    imgPopupText.textContent = elementText;
-    imgPopupImg.alt = `картинка места - ${elementText}`;
-    PopupDisplayToggle(imgPopup);
-  }
+function createCard(cardData) {
 
   const newElement = template.content.querySelector('.element').cloneNode(true);
   const elementText = newElement.querySelector('.element__text');
   const elementImg = newElement.querySelector('.element__img');
-  elementImg.src = ElemenConfig.link;
-  elementText.textContent = ElemenConfig.name;
-  elementImg.alt = `картинка места - ${ElemenConfig.name}`;
+  elementImg.src = cardData.link;
+  elementText.textContent = cardData.name;
+  elementImg.alt = `картинка места - ${cardData.name}`;
 
   const elementRemoveButton = newElement.querySelector('.element__trash');
 
-  elementRemoveButton.addEventListener('click', handleRemoveTodo);
+  elementRemoveButton.addEventListener('click', deleteCard);
 
   elementImg.addEventListener('click', openImgPopup);
 
   const elementHeart = newElement.querySelector('.element__heart');
 
-  function heartToggle() {
-    elementHeart.classList.toggle('element__heart_active');
-  }
-
-  elementHeart.addEventListener('click', heartToggle)
+  elementHeart.addEventListener('click', likeToggle)
 
   return newElement
 }
 
 initialCards.forEach(function (currentItem) {
-  elements.append(newElement(currentItem));
+  elements.append(createCard (currentItem));
 });
 
 
@@ -127,36 +95,34 @@ const eddPlaceButton = document.querySelector('.profile__add-button');
 const addPlacePopup = document.querySelector('.add-place-popup');
 const addPlaceCloseIcon = document.querySelector('.add-place-form__close-button');
 
-const addPlacePopupPopup = document.querySelector('.profile-edit-popup');
 const addPlacePopupForm = document.querySelector('.add-place-form');
-const addPlacePopupFieldText = document.querySelector('.add-place-form__input-fild-text');
-const addPlacePopupFieldLink = document.querySelector('.add-place-form__input-fild-link');
+const inputCardTitle = document.querySelector('.add-place-form__input-fild-text');
+const inputCardLink = document.querySelector('.add-place-form__input-fild-link');
 const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
-const addPlacePopupCloseIcon = document.querySelector('.add-place-form__close-button');
 
 
 function closeAddPlacePopup() {
   PopupDisplayToggle(addPlacePopup)
 }
 
-function OpenAddPlacePopup() {
-  addPlacePopupFieldText.value = '';
-  addPlacePopupFieldLink.value = '';
+function openAddPlacePopup() {
+  inputCardTitle.value = '';
+  inputCardLink.value = '';
   PopupDisplayToggle(addPlacePopup)
 }
 
 function addPlacePopupFormSubmitHandler(evt) {
   evt.preventDefault();
   const newElementConfig = {};
-  newElementConfig.name = addPlacePopupFieldText.value;
-  newElementConfig.link = addPlacePopupFieldLink.value;
+  newElementConfig.name = inputCardTitle.value;
+  newElementConfig.link = inputCardLink.value;
 
-  elements.prepend(newElement(newElementConfig));
+  elements.prepend(createCard (newElementConfig));
 
   PopupDisplayToggle(addPlacePopup)
 };
 
-eddPlaceButton.addEventListener('click', OpenAddPlacePopup);
+eddPlaceButton.addEventListener('click', openAddPlacePopup);
 addPlaceCloseIcon.addEventListener('click', closeAddPlacePopup);
 addPlacePopupForm.addEventListener('submit', addPlacePopupFormSubmitHandler);
 

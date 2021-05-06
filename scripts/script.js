@@ -59,6 +59,10 @@ const imgPopup = document.querySelector('.imgPopup');
 const imgPopupImg = imgPopup.querySelector('.imgPopup__img');
 const imgPopupText = imgPopup.querySelector('.imgPopup__text');
 
+function likeToggle(e) {
+  e.target.classList.toggle('element__heart_active');
+}
+
 function createCard(cardData) {
 
   const newElement = template.content.querySelector('.element').cloneNode(true);
@@ -75,10 +79,6 @@ function createCard(cardData) {
   elementImg.addEventListener('click', openImgPopup);
 
   const elementHeart = newElement.querySelector('.element__heart');
-
-  function likeToggle() {
-    elementHeart.classList.toggle('element__heart_active');
-  }
 
   elementHeart.addEventListener('click', likeToggle)
 

@@ -9,18 +9,18 @@ const profileEditFieldAbout = document.querySelector('.profile-edit-form__input-
 const profileEditButtonSave = document.querySelector('.profile-edit-form__button-save');
 const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
-function PopupDisplayToggle(popup) {
+function togglePopup(popup) {
   popup.classList.toggle('display');
 }
 
 function openProfileEditPopup() {
   profileEditFieldName.value = profileName.textContent;
   profileEditFieldAbout.value = profileProf.textContent;
-  PopupDisplayToggle(profileEditPopup)
+  togglePopup(profileEditPopup)
 }
 
 function closeProfileEditPopup() {
-  PopupDisplayToggle(profileEditPopup)
+  togglePopup(profileEditPopup)
 }
 
 function profileEditFormSubmitHandler(evt) {
@@ -31,7 +31,7 @@ function profileEditFormSubmitHandler(evt) {
   if (profileEditFieldAbout.value !== '') {
     profileProf.textContent = profileEditFieldAbout.value;
   }
-  PopupDisplayToggle(profileEditPopup)
+  togglePopup(profileEditPopup)
 };
 
 function deleteCard(e) {
@@ -43,11 +43,7 @@ function openImgPopup(e) {
   const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
   imgPopupText.textContent = elementText;
   imgPopupImg.alt = `картинка места - ${elementText}`;
-  PopupDisplayToggle(imgPopup);
-}
-
-function likeToggle() {
-  elementHeart.classList.toggle('element__heart_active');
+  togglePopup(imgPopup);
 }
 
 editButton.addEventListener('click', openProfileEditPopup);
@@ -80,6 +76,10 @@ function createCard(cardData) {
 
   const elementHeart = newElement.querySelector('.element__heart');
 
+  function likeToggle() {
+    elementHeart.classList.toggle('element__heart_active');
+  }
+
   elementHeart.addEventListener('click', likeToggle)
 
   return newElement
@@ -90,7 +90,7 @@ initialCards.forEach(function (currentItem) {
 });
 
 
-const eddPlaceButton = document.querySelector('.profile__add-button');
+const addPlaceButton = document.querySelector('.profile__add-button');
 
 const addPlacePopup = document.querySelector('.add-place-popup');
 const addPlaceCloseIcon = document.querySelector('.add-place-form__close-button');
@@ -102,13 +102,13 @@ const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-
 
 
 function closeAddPlacePopup() {
-  PopupDisplayToggle(addPlacePopup)
+  togglePopup(addPlacePopup)
 }
 
 function openAddPlacePopup() {
   inputCardTitle.value = '';
   inputCardLink.value = '';
-  PopupDisplayToggle(addPlacePopup)
+  togglePopup(addPlacePopup)
 }
 
 function addPlacePopupFormSubmitHandler(evt) {
@@ -119,17 +119,17 @@ function addPlacePopupFormSubmitHandler(evt) {
 
   elements.prepend(createCard (newElementConfig));
 
-  PopupDisplayToggle(addPlacePopup)
+  togglePopup(addPlacePopup)
 };
 
-eddPlaceButton.addEventListener('click', openAddPlacePopup);
+addPlaceButton.addEventListener('click', openAddPlacePopup);
 addPlaceCloseIcon.addEventListener('click', closeAddPlacePopup);
 addPlacePopupForm.addEventListener('submit', addPlacePopupFormSubmitHandler);
 
 const closeImgPopupButton = document.querySelector('.imgPopup__close-button');
 
 function closeImgPopup() {
-  PopupDisplayToggle(imgPopup);
+  togglePopup(imgPopup);
 }
 
 closeImgPopupButton.addEventListener('click', closeImgPopup);

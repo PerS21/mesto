@@ -13,6 +13,11 @@ const profileEditButtonSave = document.querySelector('.profile-edit-form__button
 const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
 function togglePopup(popup) {
+  popup.addEventListener('mousedown', function (event) {
+    if (event.target === event.currentTarget) {
+      togglePopup(popup);
+    }
+  });
   popup.classList.toggle('display');
 }
 
@@ -89,7 +94,7 @@ function createCard(cardData) {
 }
 
 initialCards.forEach(function (currentItem) {
-  elements.append(createCard (currentItem));
+  elements.append(createCard(currentItem));
 });
 
 
@@ -120,7 +125,7 @@ function addPlacePopupFormSubmitHandler(evt) {
   newElementConfig.name = inputCardTitle.value;
   newElementConfig.link = inputCardLink.value;
 
-  elements.prepend(createCard (newElementConfig));
+  elements.prepend(createCard(newElementConfig));
 
   togglePopup(addPlacePopup)
 };
@@ -136,3 +141,9 @@ function closeImgPopup() {
 }
 
 closeImgPopupButton.addEventListener('click', closeImgPopup);
+
+// imgPopup.addEventListener('click', function (event) {
+//   if (event.target === event.currentTarget) {
+//     togglePopup(imgPopup);
+//   }
+// });

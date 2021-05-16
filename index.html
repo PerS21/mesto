@@ -46,10 +46,12 @@
                 <form name="form" class="form profile-edit-form">
                     <h2 class="form__title">Редактировать профиль</h2>
                     <div class="form__inputs">
-                        <input name='fild_name' type="text" placeholder="Название"
-                            class="form__input profile-edit-form__input-fild-name" />
-                        <input name='fild_about' type="text" placeholder="Ссылка на картинку"
-                            class="form__input profile-edit-form__input-fild-about" />
+                        <input id="name" required minlength="2" maxlength="40" name='fild_name' type="text"
+                            placeholder="Название" class="form__input profile-edit-form__input-fild-name" />
+                        <span id="name-error" class="form__input-error"></span>
+                        <input id="about" required minlength="2" maxlength="200" name='fild_about' type="text"
+                            placeholder="Ссылка на картинку" class="form__input profile-edit-form__input-fild-about" />
+                        <span id="about-error" class="form__input-error"></span>
                     </div>
                     <button type="submit" class="form__button-save profile-edit-form__button-save">Сохранить</button>
                     <button type="button" class="popup__close-button button profile-edit-form__close-button"></button>
@@ -62,10 +64,12 @@
                 <form name="form" class="form add-place-form">
                     <h2 class="form__title">Новое место</h2>
                     <div class="form__inputs">
-                        <input name='fild_name' type="text" placeholder="Название"
+                        <input id="place" required minlength="2" maxlength="30" name='fild_name' type="text" placeholder="Название"
                             class="form__input add-place-form__input-fild-text" />
-                        <input name='fild_about' type="text" placeholder="Ссылка на картинку"
+                        <span id="place-error" class="form__input-error"></span>
+                        <input id="img" required name='fild_about' type="url" placeholder="Ссылка на картинку"
                             class="form__input add-place-form__input-fild-link" />
+                        <span id="img-error" class="form__input-error"></span>
                     </div>
                     <button type="submit" class="form__button-save add-place-form__button-save">Сохранить</button>
                     <button type="button" class="popup__close-button button add-place-form__close-button"></button>
@@ -94,6 +98,7 @@
         </li>
     </template>
     <script src="./scripts/initialCards.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
 </body>
 

@@ -142,8 +142,13 @@ function closeImgPopup() {
 
 closeImgPopupButton.addEventListener('click', closeImgPopup);
 
-// imgPopup.addEventListener('click', function (event) {
-//   if (event.target === event.currentTarget) {
-//     togglePopup(imgPopup);
-//   }
-// });
+document.addEventListener("keydown", function(evt){
+  if (evt.key === 'Escape'){
+    const popupList = Array.from(document.querySelectorAll('.popup'));
+    popupList.forEach((popup) => {
+      if (popup.classList.contains('display')){
+        togglePopup(popup);
+      };
+    })
+  }
+})

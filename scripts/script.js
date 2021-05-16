@@ -21,9 +21,14 @@ function togglePopup(popup) {
   popup.classList.toggle('display');
 }
 
+const updateInputValue = (inputElement, value) => {
+  inputElement.value = value;
+  inputElement.dispatchEvent(new Event('input'));
+};
+
 function openProfileEditPopup() {
-  profileEditFieldName.value = profileName.textContent;
-  profileEditFieldAbout.value = profileProf.textContent;
+  updateInputValue(profileEditFieldName, profileName.textContent);
+  updateInputValue(profileEditFieldAbout, profileProf.textContent);
   togglePopup(profileEditPopup)
 }
 
@@ -114,8 +119,8 @@ function closeAddPlacePopup() {
 }
 
 function openAddPlacePopup() {
-  inputCardTitle.value = '';
-  inputCardLink.value = '';
+  updateInputValue(inputCardTitle, '');
+  updateInputValue(inputCardLink, '');
   togglePopup(addPlacePopup)
 }
 
@@ -142,11 +147,11 @@ function closeImgPopup() {
 
 closeImgPopupButton.addEventListener('click', closeImgPopup);
 
-document.addEventListener("keydown", function(evt){
-  if (evt.key === 'Escape'){
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === 'Escape') {
     const popupList = Array.from(document.querySelectorAll('.popup'));
     popupList.forEach((popup) => {
-      if (popup.classList.contains('display')){
+      if (popup.classList.contains('display')) {
         togglePopup(popup);
       };
     })

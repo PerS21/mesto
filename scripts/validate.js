@@ -71,4 +71,4 @@ enableValidation({
     inactiveButtonClass: 'button_disable',
     inputErrorClass: 'form__input_error',
     errorClass: 'form__input-error_active',
-  });
+});

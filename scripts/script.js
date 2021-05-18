@@ -13,27 +13,38 @@ const profileEditButtonSave = document.querySelector('.profile-edit-form__button
 const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
 function togglePopup(popup) {
-  popup.addEventListener('mousedown', function (event) {
-    if (event.target === event.currentTarget) {
-      togglePopup(popup);
-    }
-  });
   popup.classList.toggle('display');
-}
+};
 
 const updateInputValue = (inputElement, value) => {
   inputElement.value = value;
   inputElement.dispatchEvent(new Event('input'));
 };
 
+function addEscCloseProfileListener(evt){
+  if (evt.key === 'Escape') {
+    closeProfileEditPopup()
+  }
+};
+
+function addOverlayCloseProfileListener(evt){
+  if (evt.target === evt.currentTarget) {
+    closeProfileEditPopup()
+  }
+};
+
 function openProfileEditPopup() {
   updateInputValue(profileEditFieldName, profileName.textContent);
   updateInputValue(profileEditFieldAbout, profileProf.textContent);
-  togglePopup(profileEditPopup)
+  togglePopup(profileEditPopup);
+  document.addEventListener("keydown", addEscCloseProfileListener);
+  profileEditPopup.addEventListener('mousedown', addOverlayCloseProfileListener);
 }
 
 function closeProfileEditPopup() {
-  togglePopup(profileEditPopup)
+  togglePopup(profileEditPopup);
+  document.removeEventListener("keydown", addEscCloseProfileListener);
+  profileEditPopup.removeEventListener("keydown", addOverlayCloseProfileListener);
 }
 
 function profileEditFormSubmitHandler(evt) {
@@ -51,12 +62,35 @@ function deleteCard(e) {
   e.target.closest('.element').remove();
 }
 
+
+const closeImgPopupButton = document.querySelector('.imgPopup__close-button');
+
+function addEscCloseImgListener(evt){
+  if (evt.key === 'Escape') {
+    closeImgPopup()
+  }
+};
+
+function addOverlayCloseImgListener(evt){
+  if (evt.target === evt.currentTarget) {
+    closeImgPopup()
+  }
+};
+
+function closeImgPopup() {
+  togglePopup(imgPopup);
+  document.removeEventListener("keydown", addEscCloseImgListener)
+  addPlacePopup.removeEventListener("keydown", addOverlayCloseImgListener);
+}
+
 function openImgPopup(e) {
   imgPopupImg.src = e.target.src;
   const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
   imgPopupText.textContent = elementText;
   imgPopupImg.alt = `картинка места - ${elementText}`;
   togglePopup(imgPopup);
+  document.addEventListener("keydown", addEscCloseImgListener);
+  imgPopup.addEventListener('mousedown', addOverlayCloseImgListener);
 }
 
 editButton.addEventListener('click', openProfileEditPopup);
@@ -113,15 +147,30 @@ const inputCardTitle = document.querySelector('.add-place-form__input-fild-text'
 const inputCardLink = document.querySelector('.add-place-form__input-fild-link');
 const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
 
+function addEscClosePlaceListener(evt){
+  if (evt.key === 'Escape') {
+    closeAddPlacePopup()
+  }
+};
+
+function addOverlayClosePlaceListener(evt){
+  if (evt.target === evt.currentTarget) {
+    closeAddPlacePopup()
+  }
+};
 
 function closeAddPlacePopup() {
-  togglePopup(addPlacePopup)
+  togglePopup(addPlacePopup);
+  document.removeEventListener("keydown", addEscClosePlaceListener);
+  addPlacePopup.removeEventListener("keydown", addOverlayClosePlaceListener);
 }
 
 function openAddPlacePopup() {
   updateInputValue(inputCardTitle, '');
   updateInputValue(inputCardLink, '');
   togglePopup(addPlacePopup)
+  document.addEventListener("keydown", addEscClosePlaceListener);
+  addPlacePopup.addEventListener('mousedown', addOverlayClosePlaceListener)
 }
 
 function addPlacePopupFormSubmitHandler(evt) {
@@ -139,21 +188,4 @@ addPlaceButton.addEventListener('click', openAddPlacePopup);
 addPlaceCloseIcon.addEventListener('click', closeAddPlacePopup);
 addPlacePopupForm.addEventListener('submit', addPlacePopupFormSubmitHandler);
 
-const closeImgPopupButton = document.querySelector('.imgPopup__close-button');
-
-function closeImgPopup() {
-  togglePopup(imgPopup);
-}
-
 closeImgPopupButton.addEventListener('click', closeImgPopup);
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === 'Escape') {
-    const popupList = Array.from(document.querySelectorAll('.popup'));
-    popupList.forEach((popup) => {
-      if (popup.classList.contains('display')) {
-        togglePopup(popup);
-      };
-    })
-  }
-})

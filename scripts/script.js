@@ -12,39 +12,49 @@ const profileEditFieldAbout = document.querySelector('.profile-edit-form__input-
 const profileEditButtonSave = document.querySelector('.profile-edit-form__button-save');
 const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
+const popupList = Array.from(document.querySelectorAll('.popup')); 
+
 function togglePopup(popup) {
   popup.classList.toggle('display');
 };
+
+function removeDisplay(){
+  popupList.forEach((popup) => { 
+    if (popup.classList.contains('display')) { 
+      popup.classList.remove('display'); 
+    }; 
+  })
+}
+
+function escClosePopup(evt){
+  if (evt.key === 'Escape') { 
+    removeDisplay()
+  } 
+}
+
+function overlayClosePopup(evt){
+  if (evt.target === evt.currentTarget) {
+    removeDisplay()
+  }
+}
 
 const updateInputValue = (inputElement, value) => {
   inputElement.value = value;
   inputElement.dispatchEvent(new Event('input'));
 };
 
-function addEscCloseProfileListener(evt){
-  if (evt.key === 'Escape') {
-    closeProfileEditPopup()
-  }
-};
-
-function addOverlayCloseProfileListener(evt){
-  if (evt.target === evt.currentTarget) {
-    closeProfileEditPopup()
-  }
-};
-
 function openProfileEditPopup() {
   updateInputValue(profileEditFieldName, profileName.textContent);
   updateInputValue(profileEditFieldAbout, profileProf.textContent);
   togglePopup(profileEditPopup);
-  document.addEventListener("keydown", addEscCloseProfileListener);
-  profileEditPopup.addEventListener('mousedown', addOverlayCloseProfileListener);
+  document.addEventListener("keydown", escClosePopup);
+  profileEditPopup.addEventListener('mousedown', overlayClosePopup);
 }
 
 function closeProfileEditPopup() {
   togglePopup(profileEditPopup);
-  document.removeEventListener("keydown", addEscCloseProfileListener);
-  profileEditPopup.removeEventListener("keydown", addOverlayCloseProfileListener);
+  document.removeEventListener("keydown", escClosePopup);
+  profileEditPopup.removeEventListener("keydown", overlayClosePopup);
 }
 
 function profileEditFormSubmitHandler(evt) {
@@ -62,25 +72,12 @@ function deleteCard(e) {
   e.target.closest('.element').remove();
 }
 
-
 const closeImgPopupButton = document.querySelector('.imgPopup__close-button');
-
-function addEscCloseImgListener(evt){
-  if (evt.key === 'Escape') {
-    closeImgPopup()
-  }
-};
-
-function addOverlayCloseImgListener(evt){
-  if (evt.target === evt.currentTarget) {
-    closeImgPopup()
-  }
-};
 
 function closeImgPopup() {
   togglePopup(imgPopup);
-  document.removeEventListener("keydown", addEscCloseImgListener)
-  addPlacePopup.removeEventListener("keydown", addOverlayCloseImgListener);
+  document.removeEventListener("keydown", escClosePopup)
+  addPlacePopup.removeEventListener("keydown", overlayClosePopup);
 }
 
 function openImgPopup(e) {
@@ -89,8 +86,8 @@ function openImgPopup(e) {
   imgPopupText.textContent = elementText;
   imgPopupImg.alt = `картинка места - ${elementText}`;
   togglePopup(imgPopup);
-  document.addEventListener("keydown", addEscCloseImgListener);
-  imgPopup.addEventListener('mousedown', addOverlayCloseImgListener);
+  document.addEventListener("keydown", escClosePopup);
+  imgPopup.addEventListener('mousedown', overlayClosePopup);
 }
 
 editButton.addEventListener('click', openProfileEditPopup);
@@ -147,30 +144,18 @@ const inputCardTitle = document.querySelector('.add-place-form__input-fild-text'
 const inputCardLink = document.querySelector('.add-place-form__input-fild-link');
 const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
 
-function addEscClosePlaceListener(evt){
-  if (evt.key === 'Escape') {
-    closeAddPlacePopup()
-  }
-};
-
-function addOverlayClosePlaceListener(evt){
-  if (evt.target === evt.currentTarget) {
-    closeAddPlacePopup()
-  }
-};
-
 function closeAddPlacePopup() {
   togglePopup(addPlacePopup);
-  document.removeEventListener("keydown", addEscClosePlaceListener);
-  addPlacePopup.removeEventListener("keydown", addOverlayClosePlaceListener);
+  document.removeEventListener("keydown", escClosePopup);
+  addPlacePopup.removeEventListener("keydown", overlayClosePopup);
 }
 
 function openAddPlacePopup() {
   updateInputValue(inputCardTitle, '');
   updateInputValue(inputCardLink, '');
   togglePopup(addPlacePopup)
-  document.addEventListener("keydown", addEscClosePlaceListener);
-  addPlacePopup.addEventListener('mousedown', addOverlayClosePlaceListener)
+  document.addEventListener("keydown", escClosePopup);
+  addPlacePopup.addEventListener('mousedown', overlayClosePopup)
 }
 
 function addPlacePopupFormSubmitHandler(evt) {

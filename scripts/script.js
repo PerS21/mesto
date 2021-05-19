@@ -10,31 +10,29 @@ const profileEditForm = document.querySelector('.profile-edit-form');
 const profileEditFieldName = document.querySelector('.profile-edit-form__input-fild-name');
 const profileEditFieldAbout = document.querySelector('.profile-edit-form__input-fild-about');
 const profileEditButtonSave = document.querySelector('.profile-edit-form__button-save');
-const profileEditCloseIcon = document.querySelector('.profile-edit-form__close-button');
 
-const popupList = Array.from(document.querySelectorAll('.popup')); 
+function openPopup(popup){
+  popup.classList.add('popup_is-opened');
+  document.addEventListener("keydown", escClosePopup);
+  popup.addEventListener('mousedown', clickClosePopup);
+}
 
-function togglePopup(popup) {
-  popup.classList.toggle('display');
-};
-
-function removeDisplay(){
-  popupList.forEach((popup) => { 
-    if (popup.classList.contains('display')) { 
-      popup.classList.remove('display'); 
-    }; 
-  })
+function closePopup(){
+  const popup = document.querySelector('.popup_is-opened');
+  popup.classList.remove('popup_is-opened');
+  popup.removeEventListener("mousedown", clickClosePopup);
+  document.removeEventListener("keydown", escClosePopup);
 }
 
 function escClosePopup(evt){
   if (evt.key === 'Escape') { 
-    removeDisplay()
+    closePopup()
   } 
 }
 
-function overlayClosePopup(evt){
-  if (evt.target === evt.currentTarget) {
-    removeDisplay()
+function clickClosePopup(evt){
+  if ((evt.target === evt.currentTarget)||evt.target.classList.contains('popup__close-button')) {
+    closePopup()
   }
 }
 
@@ -46,15 +44,11 @@ const updateInputValue = (inputElement, value) => {
 function openProfileEditPopup() {
   updateInputValue(profileEditFieldName, profileName.textContent);
   updateInputValue(profileEditFieldAbout, profileProf.textContent);
-  togglePopup(profileEditPopup);
-  document.addEventListener("keydown", escClosePopup);
-  profileEditPopup.addEventListener('mousedown', overlayClosePopup);
+  openPopup(profileEditPopup);
 }
 
 function closeProfileEditPopup() {
-  togglePopup(profileEditPopup);
-  document.removeEventListener("keydown", escClosePopup);
-  profileEditPopup.removeEventListener("keydown", overlayClosePopup);
+  closePopup()
 }
 
 function profileEditFormSubmitHandler(evt) {
@@ -65,19 +59,11 @@ function profileEditFormSubmitHandler(evt) {
   if (profileEditFieldAbout.value !== '') {
     profileProf.textContent = profileEditFieldAbout.value;
   }
-  togglePopup(profileEditPopup)
+  closePopup();
 };
 
 function deleteCard(e) {
   e.target.closest('.element').remove();
-}
-
-const closeImgPopupButton = document.querySelector('.imgPopup__close-button');
-
-function closeImgPopup() {
-  togglePopup(imgPopup);
-  document.removeEventListener("keydown", escClosePopup)
-  addPlacePopup.removeEventListener("keydown", overlayClosePopup);
 }
 
 function openImgPopup(e) {
@@ -85,16 +71,12 @@ function openImgPopup(e) {
   const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
   imgPopupText.textContent = elementText;
   imgPopupImg.alt = `картинка места - ${elementText}`;
-  togglePopup(imgPopup);
-  document.addEventListener("keydown", escClosePopup);
-  imgPopup.addEventListener('mousedown', overlayClosePopup);
+  openPopup(imgPopup);
 }
 
 editButton.addEventListener('click', openProfileEditPopup);
 
 profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
-profileEditCloseIcon.addEventListener('click', closeProfileEditPopup);
-
 
 const template = document.querySelector('#template');
 const elements = document.querySelector('.elements__list');
@@ -137,7 +119,6 @@ initialCards.forEach(function (currentItem) {
 const addPlaceButton = document.querySelector('.profile__add-button');
 
 const addPlacePopup = document.querySelector('.add-place-popup');
-const addPlaceCloseIcon = document.querySelector('.add-place-form__close-button');
 
 const addPlacePopupForm = document.querySelector('.add-place-form');
 const inputCardTitle = document.querySelector('.add-place-form__input-fild-text');
@@ -145,17 +126,13 @@ const inputCardLink = document.querySelector('.add-place-form__input-fild-link')
 const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
 
 function closeAddPlacePopup() {
-  togglePopup(addPlacePopup);
-  document.removeEventListener("keydown", escClosePopup);
-  addPlacePopup.removeEventListener("keydown", overlayClosePopup);
+  closePopup()
 }
 
 function openAddPlacePopup() {
   updateInputValue(inputCardTitle, '');
   updateInputValue(inputCardLink, '');
-  togglePopup(addPlacePopup)
-  document.addEventListener("keydown", escClosePopup);
-  addPlacePopup.addEventListener('mousedown', overlayClosePopup)
+  openPopup(addPlacePopup);
 }
 
 function addPlacePopupFormSubmitHandler(evt) {
@@ -163,14 +140,9 @@ function addPlacePopupFormSubmitHandler(evt) {
   const newElementConfig = {};
   newElementConfig.name = inputCardTitle.value;
   newElementConfig.link = inputCardLink.value;
-
   elements.prepend(createCard(newElementConfig));
-
-  togglePopup(addPlacePopup)
+  closePopup();
 };
 
 addPlaceButton.addEventListener('click', openAddPlacePopup);
-addPlaceCloseIcon.addEventListener('click', closeAddPlacePopup);
 addPlacePopupForm.addEventListener('submit', addPlacePopupFormSubmitHandler);
-
-closeImgPopupButton.addEventListener('click', closeImgPopup);

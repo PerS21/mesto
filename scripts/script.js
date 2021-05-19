@@ -47,10 +47,6 @@ function openProfileEditPopup() {
   openPopup(profileEditPopup);
 }
 
-function closeProfileEditPopup() {
-  closePopup()
-}
-
 function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
   if (profileEditFieldName.value !== '') {
@@ -124,10 +120,6 @@ const addPlacePopupForm = document.querySelector('.add-place-form');
 const inputCardTitle = document.querySelector('.add-place-form__input-fild-text');
 const inputCardLink = document.querySelector('.add-place-form__input-fild-link');
 const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
-
-function closeAddPlacePopup() {
-  closePopup()
-}
 
 function openAddPlacePopup() {
   updateInputValue(inputCardTitle, '');

@@ -1,129 +1,87 @@
 //Не объявляю все переменнные сразу для разделения по блокам - элементы лежат рядом с функциями которые их используют
 //Сделано для того что бы потом было легче разнести по отдельный файликам, в будущем хочется так сделать что бы не было одног огромного файла
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { openPopup, closePopup } from "../utils/utils.js";
+import { formConfig } from "../utils/validFormConfig.js";
 
-const editButton = document.querySelector('.profile__edit-button');
-const profileName = document.querySelector('.profile__name');
-const profileProf = document.querySelector('.profile__prof');
+const editButton = document.querySelector(".profile__edit-button");
+const profileName = document.querySelector(".profile__name");
+const profileProf = document.querySelector(".profile__prof");
 
-const profileEditPopup = document.querySelector('.profile-edit-popup');
-const profileEditForm = document.querySelector('.profile-edit-form');
-const profileEditFieldName = document.querySelector('.profile-edit-form__input-fild-name');
-const profileEditFieldAbout = document.querySelector('.profile-edit-form__input-fild-about');
-const profileEditButtonSave = document.querySelector('.profile-edit-form__button-save');
+const profileEditPopup = document.querySelector(".profile-edit-popup");
+const profileEditForm = document.querySelector(".profile-edit-form");
+const profileEditFieldName = document.querySelector(
+  ".profile-edit-form__input-fild-name"
+);
+const profileEditFieldAbout = document.querySelector(
+  ".profile-edit-form__input-fild-about"
+);
+const profileEditButtonSave = document.querySelector(
+  ".profile-edit-form__button-save"
+);
 
-function openPopup(popup){
-  popup.classList.add('popup_is-opened');
-  document.addEventListener("keydown", escClosePopup);
-  popup.addEventListener('mousedown', clickClosePopup);
-}
-
-function closePopup(){
-  const popup = document.querySelector('.popup_is-opened');
-  popup.classList.remove('popup_is-opened');
-  popup.removeEventListener("mousedown", clickClosePopup);
-  document.removeEventListener("keydown", escClosePopup);
-}
-
-function escClosePopup(evt){
-  if (evt.key === 'Escape') { 
-    closePopup()
-  } 
-}
-
-function clickClosePopup(evt){
-  if ((evt.target === evt.currentTarget)||evt.target.classList.contains('popup__close-button')) {
-    closePopup()
-  }
-}
-
-const updateInputValue = (inputElement, value) => {
-  inputElement.value = value;
-  inputElement.dispatchEvent(new Event('input'));
-};
+// const updateInputValue = (inputElement, value) => {
+//   inputElement.value = value;
+//   // inputElement.dispatchEvent(new Event("input"));
+// };
 
 function openProfileEditPopup() {
-  updateInputValue(profileEditFieldName, profileName.textContent);
-  updateInputValue(profileEditFieldAbout, profileProf.textContent);
+  const validProfileEditForm = new FormValidator();
+  validProfileEditForm.enableValidation(profileEditForm, formConfig);
+  profileEditFieldName.value = profileName.textContent;
+  profileEditFieldAbout.value = profileProf.textContent;
+  validProfileEditForm.checkFormValidity(profileEditForm, formConfig);
   openPopup(profileEditPopup);
 }
 
 function profileEditFormSubmitHandler(evt) {
   evt.preventDefault();
-  if (profileEditFieldName.value !== '') {
+  if (profileEditFieldName.value !== "") {
     profileName.textContent = profileEditFieldName.value;
   }
-  if (profileEditFieldAbout.value !== '') {
+  if (profileEditFieldAbout.value !== "") {
     profileProf.textContent = profileEditFieldAbout.value;
   }
   closePopup();
-};
-
-function deleteCard(e) {
-  e.target.closest('.element').remove();
 }
 
-function openImgPopup(e) {
-  imgPopupImg.src = e.target.src;
-  const elementText = e.target.closest('.element').querySelector('.element__text').textContent;
-  imgPopupText.textContent = elementText;
-  imgPopupImg.alt = `картинка места - ${elementText}`;
-  openPopup(imgPopup);
-}
+editButton.addEventListener("click", openProfileEditPopup);
 
-editButton.addEventListener('click', openProfileEditPopup);
+profileEditForm.addEventListener("submit", profileEditFormSubmitHandler);
 
-profileEditForm.addEventListener('submit', profileEditFormSubmitHandler);
+const elements = document.querySelector(".elements__list");
 
-const template = document.querySelector('#template');
-const elements = document.querySelector('.elements__list');
-
-const imgPopup = document.querySelector('.imgPopup');
-const imgPopupImg = imgPopup.querySelector('.imgPopup__img');
-const imgPopupText = imgPopup.querySelector('.imgPopup__text');
-
-function likeToggle(e) {
-  e.target.classList.toggle('element__heart_active');
-}
-
-function createCard(cardData) {
-
-  const newElement = template.content.querySelector('.element').cloneNode(true);
-  const elementText = newElement.querySelector('.element__text');
-  const elementImg = newElement.querySelector('.element__img');
-  elementImg.src = cardData.link;
-  elementText.textContent = cardData.name;
-  elementImg.alt = `картинка места - ${cardData.name}`;
-
-  const elementRemoveButton = newElement.querySelector('.element__trash');
-
-  elementRemoveButton.addEventListener('click', deleteCard);
-
-  elementImg.addEventListener('click', openImgPopup);
-
-  const elementHeart = newElement.querySelector('.element__heart');
-
-  elementHeart.addEventListener('click', likeToggle)
-
-  return newElement
-}
+const imgPopup = document.querySelector(".imgPopup");
+const imgPopupImg = imgPopup.querySelector(".imgPopup__img");
+const imgPopupText = imgPopup.querySelector(".imgPopup__text");
 
 initialCards.forEach(function (currentItem) {
-  elements.append(createCard(currentItem));
+  const card = new Card(currentItem, "#template").getCard();
+  elements.append(card);
 });
 
+const addPlaceButton = document.querySelector(".profile__add-button");
 
-const addPlaceButton = document.querySelector('.profile__add-button');
+const addPlacePopup = document.querySelector(".add-place-popup");
 
-const addPlacePopup = document.querySelector('.add-place-popup');
-
-const addPlacePopupForm = document.querySelector('.add-place-form');
-const inputCardTitle = document.querySelector('.add-place-form__input-fild-text');
-const inputCardLink = document.querySelector('.add-place-form__input-fild-link');
-const addPlacePopupButtonSave = document.querySelector('.add-place-form__button-save');
+const addPlacePopupForm = document.querySelector(".add-place-form");
+const inputCardTitle = document.querySelector(
+  ".add-place-form__input-fild-text"
+);
+const inputCardLink = document.querySelector(
+  ".add-place-form__input-fild-link"
+);
+const addPlacePopupButtonSave = document.querySelector(
+  ".add-place-form__button-save"
+);
 
 function openAddPlacePopup() {
-  updateInputValue(inputCardTitle, '');
-  updateInputValue(inputCardLink, '');
+  const validAddPlaceForm = new FormValidator(formConfig, addPlacePopupForm);
+  validAddPlaceForm.enableValidation(addPlacePopupForm, formConfig);
+  inputCardTitle.value = "";
+  inputCardLink.value = "";
+  validAddPlaceForm.checkFormValidity(addPlacePopupForm, formConfig);
   openPopup(addPlacePopup);
 }
 
@@ -132,9 +90,10 @@ function addPlacePopupFormSubmitHandler(evt) {
   const newElementConfig = {};
   newElementConfig.name = inputCardTitle.value;
   newElementConfig.link = inputCardLink.value;
-  elements.prepend(createCard(newElementConfig));
+  const card = new Card(newElementConfig, "#template").getCard();
+  elements.prepend(card);
   closePopup();
-};
+}
 
-addPlaceButton.addEventListener('click', openAddPlacePopup);
-addPlacePopupForm.addEventListener('submit', addPlacePopupFormSubmitHandler);
+addPlaceButton.addEventListener("click", openAddPlacePopup);
+addPlacePopupForm.addEventListener("submit", addPlacePopupFormSubmitHandler);

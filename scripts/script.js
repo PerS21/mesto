@@ -1,5 +1,3 @@
-//Не объявляю все переменнные сразу для разделения по блокам - элементы лежат рядом с функциями которые их используют
-//Сделано для того что бы потом было легче разнести по отдельный файликам, в будущем хочется так сделать что бы не было одног огромного файла
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { openPopup, closePopup } from "../utils/utils.js";
@@ -17,18 +15,11 @@ const profileEditFieldName = document.querySelector(
 const profileEditFieldAbout = document.querySelector(
   ".profile-edit-form__input-fild-about"
 );
-const profileEditButtonSave = document.querySelector(
-  ".profile-edit-form__button-save"
-);
 
-// const updateInputValue = (inputElement, value) => {
-//   inputElement.value = value;
-//   // inputElement.dispatchEvent(new Event("input"));
-// };
+const validProfileEditForm = new FormValidator( formConfig, profileEditForm);
+validProfileEditForm.enableValidation();
 
 function openProfileEditPopup() {
-  const validProfileEditForm = new FormValidator();
-  validProfileEditForm.enableValidation(profileEditForm, formConfig);
   profileEditFieldName.value = profileName.textContent;
   profileEditFieldAbout.value = profileProf.textContent;
   validProfileEditForm.checkFormValidity(profileEditForm, formConfig);
@@ -76,11 +67,11 @@ const addPlacePopupButtonSave = document.querySelector(
   ".add-place-form__button-save"
 );
 
+const validAddPlaceForm = new FormValidator(formConfig, addPlacePopupForm);
+validAddPlaceForm.enableValidation();
+
 function openAddPlacePopup() {
-  const validAddPlaceForm = new FormValidator(formConfig, addPlacePopupForm);
-  validAddPlaceForm.enableValidation(addPlacePopupForm, formConfig);
-  inputCardTitle.value = "";
-  inputCardLink.value = "";
+  addPlacePopupForm.reset()
   validAddPlaceForm.checkFormValidity(addPlacePopupForm, formConfig);
   openPopup(addPlacePopup);
 }

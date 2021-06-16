@@ -1,10 +1,153 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <title>Webpack</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место</title>
+    <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body>
-    <h1>Hello</h1>
+
+  <body class="page">
+    <div class="page__container">
+      <header class="header">
+        <img src="<%=require('./images/VectorLogo.svg')%>" alt="место" class="header__img" />
+      </header>
+
+      <main class="content">
+        <section class="profile">
+          <div class="profile__profile-info">
+            <img
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="аватар"
+              class="profile__avatar"
+            />
+            <div class="profile__text">
+              <div class="profile__name-line">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-button button">
+                  <img src="<%=require('./images/Vector.svg')%>" alt="Изменить" />
+                </button>
+              </div>
+              <p class="profile__prof">Исследователь океана</p>
+            </div>
+          </div>
+          <button type="button" class="profile__add-button button">
+            <img src="<%=require('./images/Vectoradd.svg')%>" alt="Добавить" />
+          </button>
+        </section>
+        <section class="elements">
+          <ul class="elements__list"></ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p>© 2020 Mesto Russia</p>
+      </footer>
+
+      <div class="popup profile-edit-popup">
+        <div class="popup__container popup__container_content-form">
+          <form name="profile-edit-form" class="form profile-edit-form">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <div class="form__inputs">
+              <input
+                id="name"
+                required
+                minlength="2"
+                maxlength="40"
+                name="fild_name"
+                type="text"
+                placeholder="Название"
+                class="form__input profile-edit-form__input-fild-name"
+              />
+              <span id="name-error" class="form__input-error"></span>
+              <input
+                id="about"
+                required
+                minlength="2"
+                maxlength="200"
+                name="fild_about"
+                type="text"
+                placeholder="Проффесия"
+                class="form__input profile-edit-form__input-fild-about"
+              />
+              <span id="about-error" class="form__input-error"></span>
+            </div>
+            <button
+              type="submit"
+              class="form__button-save profile-edit-form__button-save"
+            >
+              Сохранить
+            </button>
+            <button
+              type="button"
+              class="popup__close-button button profile-edit-form__close-button"
+            ></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup add-place-popup">
+        <div class="popup__container popup__container_content-form">
+          <form name="add-place-form" class="form add-place-form">
+            <h2 class="form__title">Новое место</h2>
+            <div class="form__inputs">
+              <input
+                id="place"
+                required
+                minlength="2"
+                maxlength="30"
+                name="fild_place"
+                type="text"
+                placeholder="Название"
+                class="form__input add-place-form__input-fild-text"
+              />
+              <span id="place-error" class="form__input-error"></span>
+              <input
+                id="img"
+                required
+                name="fild_img"
+                type="url"
+                placeholder="Ссылка на картинку"
+                class="form__input add-place-form__input-fild-link"
+              />
+              <span id="img-error" class="form__input-error"></span>
+            </div>
+            <button
+              type="submit"
+              class="form__button-save add-place-form__button-save"
+            >
+              Сохранить
+            </button>
+            <button
+              type="button"
+              class="popup__close-button button add-place-form__close-button"
+            ></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup imgPopup">
+        <div class="popup__container popup__container_content-img">
+          <img class="imgPopup__img" src="#" alt="Альт картинки" />
+          <p class="imgPopup__text">Текс карточки</p>
+          <button
+            type="button"
+            class="popup__close-button button imgPopup__close-button"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <template id="template">
+      <li class="element">
+        <img src="#" alt="Картинка элемента" class="element__img" />
+        <div class="element__info">
+          <h2 class="element__text">Текс элемента</h2>
+          <button type="button" class="element__heart"></button>
+        </div>
+        <button type="button" class="element__trash button"></button>
+      </li>
+    </template>
+    <!-- <script src="./utils/initialCards.js"></script> -->
+    <!-- <script type="module" src="./scripts/script.js"></script> -->
   </body>
-</html> 
+</html>

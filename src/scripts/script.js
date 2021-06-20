@@ -1,9 +1,18 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "../scripts/Section.js";
 import { openPopup, closePopup } from "../utils/utils.js";
 import { formConfig } from "../utils/validFormConfig.js";
 import '../pages/index.css';
 import {initialCards} from '../utils/initialCards.js';
+import Popup from '../scripts/Popup.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
+
+const asd = new PopupWithForm(".profile-edit-popup", ()=>{console.log(5)});
+asd.open();
+asd.setEventListeners();
+
 
 const editButton = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
@@ -22,6 +31,7 @@ const validProfileEditForm = new FormValidator( formConfig, profileEditForm);
 validProfileEditForm.enableValidation();
 
 function openProfileEditPopup() {
+  console.log(1)
   profileEditFieldName.value = profileName.textContent;
   profileEditFieldAbout.value = profileProf.textContent;
   validProfileEditForm.checkFormValidity(profileEditForm, formConfig);
@@ -49,10 +59,17 @@ const imgPopup = document.querySelector(".imgPopup");
 const imgPopupImg = imgPopup.querySelector(".imgPopup__img");
 const imgPopupText = imgPopup.querySelector(".imgPopup__text");
 
-initialCards.forEach(function (currentItem) {
-  const card = new Card(currentItem, "#template").getCard();
-  elements.append(card);
-});
+const popupWithImage = new PopupWithImage(".imgPopup");
+
+const section = new Section({data: initialCards,
+  renderer: (currentItem)=>{
+   const card = new Card(currentItem, "#template", (cardImg, cardText) => popupWithImage.open(cardImg, cardText)).getCard();
+   elements.prepend(card);
+ }
+}, ".elements__list");
+
+section.renderer();
+
 
 const addPlaceButton = document.querySelector(".profile__add-button");
 
@@ -83,8 +100,8 @@ function addPlacePopupFormSubmitHandler(evt) {
   const newElementConfig = {};
   newElementConfig.name = inputCardTitle.value;
   newElementConfig.link = inputCardLink.value;
-  const card = new Card(newElementConfig, "#template").getCard();
-  elements.prepend(card);
+  const card = new Card(newElementConfig, "#template", (cardImg, cardText) => popupWithImage.open(cardImg, cardText)).getCard();
+  section.addItem(card);
   closePopup();
 }
 

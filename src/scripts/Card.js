@@ -1,20 +1,12 @@
-import { openPopup } from "../utils/utils.js";
-
 class Card {
-  constructor(data, select) {
+  constructor(data, select, openPopupWithImage) {
     this._template = document.querySelector(select).content;
     this._data = data;
+    this._openPopupWithImage = openPopupWithImage
   }
 
   _openImgPopup = () => {
-    const imgPopup = document.querySelector(".imgPopup");
-    const imgPopupImg = imgPopup.querySelector(".imgPopup__img");
-    const imgPopupText = imgPopup.querySelector(".imgPopup__text");
-    imgPopupImg.src = this._cardImg.src;
-    const elementText = this._cardText.textContent;
-    imgPopupText.textContent = elementText;
-    imgPopupImg.alt = `картинка места - ${elementText}`;
-    openPopup(imgPopup);
+    this._openPopupWithImage(this._cardImg, this._cardText);
   };
 
   _deleteCard = (e) => {

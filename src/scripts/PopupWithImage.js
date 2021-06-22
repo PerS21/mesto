@@ -5,7 +5,7 @@ export default class PopupWithImage extends Popup {
         super(selector);
     }
 
-    open(cardImg, cardText) {
+    open = (cardImg, cardText) => {
         super.open();
         const imgPopupImg = this._popup.querySelector(".imgPopup__img");
         const imgPopupText = this._popup.querySelector(".imgPopup__text");
@@ -13,5 +13,13 @@ export default class PopupWithImage extends Popup {
         const elementText = cardText.textContent;
         imgPopupText.textContent = elementText;
         imgPopupImg.alt = `картинка места - ${elementText}`;
+    }
+
+    close = () => {
+        super.close();
+    }
+
+    setEventListeners = () => {
+        super.setEventListeners()
     }
 }

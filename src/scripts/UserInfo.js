@@ -7,9 +7,10 @@ export default class UserInfo{
     }
 
     getUserInfo(){
+        console.log(this._aboutField)
         return {
-            name : this._nameField.value,
-            about : this._aboutField.value,
+            name : this._nameField.textContent,
+            about : this._aboutField.textContent,
         }
     }
 

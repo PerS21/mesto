@@ -1,5 +1,6 @@
 import Popup from '../scripts/Popup.js';
 
+
 export default class PopupWithForm extends Popup{
     constructor(selector, callBack){
         super (selector);
@@ -13,13 +14,16 @@ export default class PopupWithForm extends Popup{
     }
 
     close = () => {
-        super.close()
-        this._form.reset()
+        super.close();
+        this._form.reset();
     }
 
     setEventListeners = () => {
         super.setEventListeners()
-        this._form.addEventListener('submit', this._callBack);
+        this._form.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            this._callBack(this._getInputValues())
+     });
     }
 
     _getInputValues = () => {

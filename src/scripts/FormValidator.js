@@ -39,7 +39,7 @@ class FormValidator {
     return this._inputList.some((inputElement) => !inputElement.validity.valid);
   };
 
-  _toggleButtonState = (buttonElement) => {
+  _toggleButtonState = () => {
     if (this._hazInvalidInput(this._inputList)) {
       this._buttonElement.disabled = true;
       this._buttonElement.classList.add(this._inactiveButtonClass);

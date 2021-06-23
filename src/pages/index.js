@@ -15,7 +15,9 @@ const profileEditForm = document.querySelector(".profile-edit-form");
 const addPlacePopupForm = document.querySelector(".add-place-form");
 
 const validAddPlaceForm = new FormValidator(formConfig, addPlacePopupForm);
+validAddPlaceForm.enableValidation();
 const validProfileEditForm = new FormValidator( formConfig, profileEditForm);
+validProfileEditForm.enableValidation();
 
 
 
@@ -25,7 +27,6 @@ const popupEditProfile = new PopupWithForm(".profile-edit-popup", function(input
   profileName.textContent = inputValues.fild_name;
   profileProf.textContent = inputValues.fild_about;
   userInfo.setUserInfo(profileName.textContent, inputValues.fild_about);
-  console.log(userInfo.getUserInfo());
   popupEditProfile.close();
 });
 userInfo.setUserInfo(popupEditProfile.textContent, profileProf.textContent);
@@ -36,7 +37,7 @@ editButton.addEventListener("click", ()=>{
   profileEditForm.querySelector('.profile-edit-form__input-fild-name').value = userInfo.getUserInfo().name;
   profileEditForm.querySelector('.profile-edit-form__input-fild-about').value = userInfo.getUserInfo().about;
   popupEditProfile.open();
-  validProfileEditForm.enableValidation();
+  validProfileEditForm.checkFormValidity();
 });
 
 function newCard(data){
@@ -54,7 +55,10 @@ const popupAddPlace = new PopupWithForm(".add-place-popup", function(inputValues
 });
 popupAddPlace.setEventListeners();
 const addPlaceButton = document.querySelector(".profile__add-button");
-addPlaceButton.addEventListener("click", popupAddPlace.open);
+addPlaceButton.addEventListener("click", ()=>{
+  validAddPlaceForm.checkFormValidity();
+  popupAddPlace.open();
+});
 
 const elements = document.querySelector(".elements__list");
 

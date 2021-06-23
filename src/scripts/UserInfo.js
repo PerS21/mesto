@@ -14,7 +14,7 @@ export default class UserInfo{
     }
 
     setUserInfo(name, about){
-        this._nameField.value = name,
-        this._aboutField.value = about
+        this._nameField.textContent = name,
+        this._aboutField.textContent = about
     }
 }

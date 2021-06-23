@@ -24,23 +24,22 @@ validProfileEditForm.enableValidation();
 const userInfo = new UserInfo('.profile__name', '.profile__prof');
 
 const popupEditProfile = new PopupWithForm(".profile-edit-popup", function(inputValues){
-  profileName.textContent = inputValues.fild_name;
-  profileProf.textContent = inputValues.fild_about;
-  userInfo.setUserInfo(profileName.textContent, inputValues.fild_about);
+  userInfo.setUserInfo(inputValues.fild_name, inputValues.fild_about);
   popupEditProfile.close();
 });
-userInfo.setUserInfo(popupEditProfile.textContent, profileProf.textContent);
+userInfo.setUserInfo(profileName.textContent, profileProf.textContent);
 popupEditProfile.setEventListeners();
 const editButton = document.querySelector(".profile__edit-button");
 
 editButton.addEventListener("click", ()=>{
-  profileEditForm.querySelector('.profile-edit-form__input-fild-name').value = userInfo.getUserInfo().name;
-  profileEditForm.querySelector('.profile-edit-form__input-fild-about').value = userInfo.getUserInfo().about;
+  const newUserInfo = userInfo.getUserInfo()
+  profileEditForm.querySelector('.profile-edit-form__input-fild-name').value = newUserInfo.name;
+  profileEditForm.querySelector('.profile-edit-form__input-fild-about').value = newUserInfo.about;
   popupEditProfile.open();
   validProfileEditForm.checkFormValidity();
 });
 
-function newCard(data){
+function createNewCard(data){
   const card = new Card(data, "#template", (cardImg, cardText) => popupWithImage.open(cardImg, cardText)).getCard();
   return card
 }
@@ -49,9 +48,9 @@ const popupAddPlace = new PopupWithForm(".add-place-popup", function(inputValues
   const newElementConfig = {};
   newElementConfig.name = inputValues.fild_place;
   newElementConfig.link = inputValues.fild_img;
-  section.addItem(newCard(newElementConfig));
+  section.addItem(createNewCard(newElementConfig));
   popupAddPlace.close();
-  validAddPlaceForm.enableValidation();
+  validAddPlaceForm.checkFormValidity();
 });
 popupAddPlace.setEventListeners();
 const addPlaceButton = document.querySelector(".profile__add-button");
@@ -67,7 +66,7 @@ popupWithImage.setEventListeners();
 
 const section = new Section({data: initialCards,
   renderer: (currentItem)=>{
-   elements.prepend(newCard(currentItem));
+   section.addItem(createNewCard(currentItem));
  }
 }, ".elements__list");
 

@@ -30,11 +30,21 @@ class Card {
     this._cardText = this._card.querySelector(".element__text");
     this._cardTrash = this._card.querySelector(".element__trash");
     this._cardHeart = this._card.querySelector(".element__heart");
+    this._heartQuantity = this._card.querySelector(".element__heart-quantity");
+    this._trash = this._card.querySelector(".element__trash");
+
     this._elementCard = this._cardTrash.closest(".element")
 
     this._cardText.textContent = this._data.name;
+    this._heartQuantity.textContent = this._data.likes.length;
     this._cardImg.src = this._data.link;
     this._cardImg.alt = this._data.name;
+
+    // console.log(this._data.name, this._data.owner._id, this._data._id, this._data.owner.name);
+
+    if(this._data.owner._id === 'd25e927dc67825f14088ed0d'){
+      this._trash.classList.add('element__trash_visible')
+    }
 
     this._addListeners();
   };

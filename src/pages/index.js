@@ -3,10 +3,13 @@ import FormValidator from "../scripts/FormValidator.js";
 import Section from "../scripts/Section.js";
 import { formConfig } from "../utils/validFormConfig.js";
 import '../pages/index.css';
-import {initialCards} from '../utils/initialCards.js';
+// import {initialCards} from '../utils/initialCards.js';
 import PopupWithImage from '../scripts/PopupWithImage.js';
 import PopupWithForm from '../scripts/PopupWithForm.js';
 import UserInfo from '../scripts/UserInfo.js';
+import Api from '../scripts/Api.js';
+
+const section = new Section(".elements__list");
 
 const profileName = document.querySelector(".profile__name");
 const profileProf = document.querySelector(".profile__prof");
@@ -64,10 +67,20 @@ const elements = document.querySelector(".elements__list");
 const popupWithImage = new PopupWithImage(".imgPopup");
 popupWithImage.setEventListeners();
 
-const section = new Section({data: initialCards,
-  renderer: (currentItem)=>{
-   section.addItem(createNewCard(currentItem));
- }
-}, ".elements__list");
+const api = new Api();
 
-section.renderer();
+api.getCards(createNewCard).then(cards => {
+  // console.log(cards)
+  cards.forEach(item => {
+    section.addItem(createNewCard(item));
+  })
+})
+
+
+
+
+const asd = document.querySelector('.profile__avatar');
+function ddd(){
+  console.log(123)
+}
+asd.addEventListener('click', ddd);

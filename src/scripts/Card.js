@@ -1,21 +1,56 @@
+import Api from "./Api";
+
 class Card {
-  constructor(data, select, openPopupWithImage) {
+  constructor(data, select, userId, api, openPopupWithImage, openPopupDeleteCard) {
     this._template = document.querySelector(select).content;
     this._data = data;
-    this._openPopupWithImage = openPopupWithImage
+    this._openPopupWithImage = openPopupWithImage;
+    this._openPopupDeleteCard = openPopupDeleteCard;
+
+    this._userId = userId;
+    this._api = api;
   }
 
   _openImgPopup = () => {
     this._openPopupWithImage(this._cardImg, this._cardText);
   };
 
-  _deleteCard = (e) => {
-    this._elementCard.remove();
-    this._elementCard = null;
+  _deleteCard = () => {
+    this._openPopupDeleteCard(this._data.likes);
+    // this._elementCard.remove();
+    // this._elementCard = null;
   };
 
-  _likeToggle = (e) => {
-    this._cardHeart.classList.toggle("element__heart_active");
+  _checkLike() {
+    const likeId = []
+    this._data.likes.forEach((like) => {
+      likeId.push(like._id)
+    })
+    if (likeId.includes(this._userId)) {
+      this._cardHeart.classList.add('element__heart_active')
+    }
+  }
+
+  _checkTrash() {
+    if (this._data.owner._id === this._userId) {
+      this._trash.classList.add('element__trash_visible')
+    }
+  }
+
+  _likeToggle = () => {
+    if (this._cardHeart.classList.contains("element__heart_active")) {
+      this._api.deleteLike(this._data._id)
+      .then(() => {
+        this._cardHeart.classList.remove("element__heart_active");
+        this._heartQuantity.textContent = Number(this._heartQuantity.textContent) - 1;
+      })
+    } else {
+      this._api.putLike(this._data._id)
+        .then(() => {
+          this._cardHeart.classList.add("element__heart_active");
+          this._heartQuantity.textContent = Number(this._heartQuantity.textContent) + 1;
+        })
+    }
   };
 
   _addListeners = () => {
@@ -42,10 +77,8 @@ class Card {
 
     // console.log(this._data.name, this._data.owner._id, this._data._id, this._data.owner.name);
 
-    if(this._data.owner._id === 'd25e927dc67825f14088ed0d'){
-      this._trash.classList.add('element__trash_visible')
-    }
-
+    this._checkTrash();
+    this._checkLike();
     this._addListeners();
   };
 

@@ -14,16 +14,22 @@ export default class UserInfo {
         return {
             name: this._nameField.textContent,
             about: this._aboutField.textContent,
-            avatar: this._avatarImg.src
+            avatar: this._avatarImg.src,
+            id: this._id,
         }
     }
 
-    setUserInfo(name, about) {
+    setUserInfo(name, about, id) {
             this._nameField.textContent = name;
             this._aboutField.textContent = about;
+            this._id = id;
     }
 
     setUserAvatar(avatar){
         this._avatarImg.src = avatar
+    }
+
+    setUserId(id){
+        this._id = id
     }
 }

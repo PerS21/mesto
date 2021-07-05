@@ -11,4 +11,5 @@
 
 .profile__avatar-edit:hover{
     opacity: 1;
+    cursor: pointer;
 }

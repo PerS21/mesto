@@ -1,3 +1,5 @@
+import UserInfo from './UserInfo.js'
+
 export default class Api {
     constructor() {}
 
@@ -11,6 +13,24 @@ export default class Api {
                 if (res.ok) {
                     return res.json();
                 }
+            })
+    }
+
+    getUser() {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-25/users/me', {
+                headers: {
+                    authorization: 'da22e24c-dd01-4958-b7cb-8f4974dde69d',
+                },
+            })
+            .then(res => 
+                { if(res.ok){return res.json()}}
+            )
+            .then(user => {
+
+                return user
+            })
+            .catch(error => {
+                console.log(error)
             })
     }
 
@@ -38,7 +58,7 @@ export default class Api {
     }
 
     deleteCard() {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-25/cards/60e1eee8f4b886002071c293', {
+        fetch('https://mesto.nomoreparties.co/v1/cohort-25/cards/60e2a714f4b886002071c3e7', {
                 method: 'DELETE',
                 headers: {
                     authorization: 'da22e24c-dd01-4958-b7cb-8f4974dde69d',
@@ -54,28 +74,7 @@ export default class Api {
             })
     }
 
-    getUser() {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-25/users/me', {
-                headers: {
-                    authorization: 'da22e24c-dd01-4958-b7cb-8f4974dde69d',
-                },
-            })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
-            .then(user => {
-                if (user.ok) {
-                    console.log(user)
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
-    patchUser(){
+    patchUserInfo(){
         fetch('https://mesto.nomoreparties.co/v1/cohort-25/users/me',{
             method: 'PATCH',
             headers: {
@@ -84,7 +83,33 @@ export default class Api {
             },
             body: JSON.stringify({
               name: 'Stas',
-              about: 'Stasss'
+              about: 'Staaaaaasss'
+            })
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+        })
+        .then(user => {
+            if (user.ok) {
+                console.log(user)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
+    patchUserImg(){
+        fetch('https://mesto.nomoreparties.co/v1/cohort-25/users/me/avatar',{
+            method: 'PATCH',
+            headers: {
+                authorization: 'da22e24c-dd01-4958-b7cb-8f4974dde69d',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                avatar: 'https://st4.depositphotos.com/11095424/25331/i/600/depositphotos_253317408-stock-photo-spongebob-squarepants-cartoon-blinking-one.jpg',
             })
         })
         .then(res => {

@@ -11,7 +11,7 @@
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__avatar-img/profile__avatar-img.css);
 @import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
-@import url(../blocks/profile/__avatar-edit/__icon/profile__avatar-edit__icon.css);
+@import url(../blocks/profile/__avatar-edit-icon/profile__avatar-edit-icon.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__text/profile__text.css);
 @import url(../blocks/profile/__profile-info/profile__profile-info.css);

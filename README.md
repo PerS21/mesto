@@ -14,4 +14,4 @@ https://pers21.github.io/mesto/
 
 **Технологии**
 
-Чистые html, css, js
+Чистые html, css, js, Webpac

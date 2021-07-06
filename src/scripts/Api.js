@@ -56,8 +56,8 @@ export default class Api {
             })
     }
 
-    deleteCard() {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-25/cards/60e2a714f4b886002071c3e7', {
+    deleteCard(cardId) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-25/cards/${cardId}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: 'da22e24c-dd01-4958-b7cb-8f4974dde69d',

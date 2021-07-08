@@ -1,11 +1,11 @@
 class Card {
-  constructor(data, select, userInfo, api, openPopupWithImage, openPopupDeleteCard) {
+  constructor(data, select, userId, api, openPopupWithImage, openPopupDeleteCard) {
     this._template = document.querySelector(select).content;
     this._data = data;
     this._openPopupWithImage = openPopupWithImage;
     this._openPopupDeleteCard = openPopupDeleteCard;
 
-    this._userId = userInfo.getUserInfo().id;
+    this._userId = userId;
     this._api = api;
   }
 

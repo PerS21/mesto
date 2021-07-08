@@ -64,7 +64,7 @@ editButton.addEventListener("click", () => {
 });
 
 function createNewCard(data) {
-  const card = new Card(data, "#template", userInfo, api,
+  const card = new Card(data, "#template", userInfo.getUserInfo().id, api,
     popupWithImage,
     (cardId,cardElement)=>{return openPopupDeleteCard(cardId,cardElement)},
   ).getCard();

@@ -14,8 +14,4 @@ export default class PopupWithImage extends Popup {
         this._imgPopupText.textContent = elementText;
         this._imgPopupImg.alt = `картинка места - ${elementText}`;
     }
-
-    setEventListeners = () => {
-        super.setEventListeners()
-    }
 }

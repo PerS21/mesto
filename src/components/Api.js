@@ -75,9 +75,6 @@ export default class Api {
                 })
             })
             .then(this._checkResponse)
-            .catch(error => {
-                console.log(error)
-            })
     }
 
     putLike(id) {
@@ -86,9 +83,6 @@ export default class Api {
                 headers: this._headers,
             })
             .then(this._checkResponse)
-            .catch(error => {
-                console.log(error)
-            })
     }
 
     deleteLike(id) {
@@ -97,8 +91,5 @@ export default class Api {
                 headers: this._headers,
             })
             .then(this._checkResponse)
-            .catch(error => {
-                console.log(error)
-            })
     }
 }

@@ -28,7 +28,6 @@ class Card {
   }
 
   _checkTrash() {
-    console.log(this._data.owner._id, this._userId)
     if (this._data.owner._id === this._userId) {
       this._trash.classList.add('element__trash_visible')
     }

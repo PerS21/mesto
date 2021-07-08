@@ -1,5 +1,5 @@
 class Card {
-  constructor(data, select, userInfo, api, openPopupWithImage, openPopupDeleteCard, popup) {
+  constructor(data, select, userInfo, api, openPopupWithImage, openPopupDeleteCard) {
     this._template = document.querySelector(select).content;
     this._data = data;
     this._openPopupWithImage = openPopupWithImage;
@@ -7,7 +7,6 @@ class Card {
 
     this._userId = userInfo.getUserInfo().id;
     this._api = api;
-    this._popup = popup;
   }
 
   _openImgPopup = () => {
@@ -15,15 +14,7 @@ class Card {
   };
 
   _deleteCard = () => {
-    this._popup.open();
-    this._popup.setConfirmHandler(() => {
-      this._api.deleteCard(this._data._id)
-      .then(() => {
-        this._popup.close();
-        this._elementCard.remove();
-      })
-
-    })
+    this._openPopupDeleteCard(this._data._id, this._elementCard);
   };
 
   _checkLike() {
@@ -37,6 +28,7 @@ class Card {
   }
 
   _checkTrash() {
+    console.log(this._data.owner._id, this._userId)
     if (this._data.owner._id === this._userId) {
       this._trash.classList.add('element__trash_visible')
     }
@@ -49,11 +41,17 @@ class Card {
           this._cardHeart.classList.remove("element__heart_active");
           this._heartQuantity.textContent = res.likes.length;
         })
+        .catch(error => {
+            console.log(error)
+        })
     } else {
       this._api.putLike(this._data._id)
         .then((res) => {
           this._cardHeart.classList.add("element__heart_active");
           this._heartQuantity.textContent = res.likes.length;
+        })
+        .catch(error => {
+            console.log(error)
         })
     }
   };

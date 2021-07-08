@@ -8,14 +8,6 @@ export default class PopupСonfirm extends Popup {
         this._form = this._popup.querySelector("form");
     }
 
-    open = () => {
-        super.open()
-    }
-
-    close = () => {
-        super.close();
-    }
-
     setEventListeners = () => {
         super.setEventListeners()
         this._form.addEventListener('submit', (evt) => {

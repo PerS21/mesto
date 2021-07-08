@@ -1,4 +1,4 @@
-import Popup from '../scripts/Popup.js';
+import Popup from './Popup.js';
 
 export default class PopupWithImage extends Popup {
     constructor(selector) {
@@ -13,10 +13,6 @@ export default class PopupWithImage extends Popup {
         const elementText = cardText.textContent;
         this._imgPopupText.textContent = elementText;
         this._imgPopupImg.alt = `картинка места - ${elementText}`;
-    }
-
-    close = () => {
-        super.close();
     }
 
     setEventListeners = () => {

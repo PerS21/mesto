@@ -53,7 +53,6 @@ class FormValidator {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", (evt) => {
         evt.preventDefault();
@@ -69,9 +68,9 @@ class FormValidator {
   };
 
   checkFormValidity = () => {
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      this._toggleButtonState();
     });
   };
 }

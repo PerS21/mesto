@@ -1,4 +1,4 @@
-import Popup from '../scripts/Popup.js';
+import Popup from './Popup.js';
 
 
 export default class PopupWithForm extends Popup{
@@ -7,10 +7,6 @@ export default class PopupWithForm extends Popup{
 
         this._callBack = callBack.bind(this);
         this._form = this._popup.querySelector("form");
-    }
-
-    open = () => {
-        super.open()
     }
 
     close = () => {
